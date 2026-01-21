@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayieza Sahar | Professional Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-glow: #00f2fe;
+            --secondary-glow: #7367f0;
+            --accent-color: #f72585;
+            --bg-dark: #0b0d17;
+            --glass: rgba(255, 255, 255, 0.03);
+            --contact-gradient: linear-gradient(135deg, #00f2fe 0%, #7367f0 50%, #f72585 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            background: radial-gradient(circle at top right, #1a1c2c, #0b0d17);
+            color: #ffffff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 13, 23, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary-glow), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--primary-glow); }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 10% 60px 10%;
+            flex-wrap: wrap;
+        }
+
+        .hero-text { flex: 1; min-width: 400px; }
+        .hero-text h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text span { background: var(--contact-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-text p { font-size: 1.2rem; color: #b0b3b8; margin-bottom: 30px; }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; min-width: 400px; }
+        .profile-img {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--glass);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: var(--contact-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 700;
+            transition: 0.4s;
+            border: none;
+        }
+
+        section { padding: 80px 10%; }
+        .section-title { font-size: 3rem; text-align: center; margin-bottom: 60px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* --- UNIQUE UPDATED CARDS --- */
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--contact-gradient);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        .card h3 { 
+            font-size: 1.6rem; 
+            margin-bottom: 15px; 
+            background: linear-gradient(to right, #fff, var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card p { font-size: 0.95rem; color: #a1a1aa; margin-bottom: 25px; }
+
+        .details-btn {
+            color: var(--primary-glow);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .details-btn:hover { color: var(--accent-color); }
+
+        /* --- CONTACT BOX --- */
+        .contact-box {
+            background: var(--contact-gradient); 
+            padding: 60px 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            width: 100%; 
+            margin: 0 auto;
+        }
+
+        .contact-box h2 { font-size: 2.8rem; margin-bottom: 10px; color: #fff; font-weight: 700; }
+        .contact-box p.subtitle { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .info-link {
+            display: block;
+            font-size: 1.1rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .info-link strong {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            display: block; 
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: transparent;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer p { color: #666; font-size: 0.9rem; }
+
+        @media (max-width: 1024px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .hero-image .profile-img { width: 320px; height: 320px; }
+            .contact-box h2 { font-size: 2.2rem; }
+            .contact-details { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">P O R T F O L I O</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#projects">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Hi, I'm Ayieza<br><span>Web Developer</span></h1>
+            <p>I build high-performance, modern web applications that combine functional efficiency with stunning aesthetics. Let's transform your vision into a digital masterpiece.</p>
+            <a href="mailto:ayiezasahar@gmail.com" class="btn">Start a Project</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://img.freepik.com/free-vector/female-software-engineer-working-coding-it-character-working-office-modern-workplace-flat-illustration-vector_1150-61138.jpg" alt="Ayieza Sahar" class="profile-img">
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">My Work</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div>
+                    <h3>Enterprise Web App</h3>
+                    <p>High-volume cloud dashboard utilizing modular JavaScript and advanced CSS Grid for real-time data visualization across all devices.</p>
+                </div>
+                <a href="#" class="details-btn">More Details ➔</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Premium E-Commerce</h3>
+                    <p>Luxury shopping experience featuring multi-currency payment gateways and an optimized image pipeline for lightning-fast speeds.</p>
+                </div>
+                <a href="#" class="details-btn">More Details ➔</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Financial Dashboard</h3>
+                    <p>A high-security FinTech application focusing on clean typography and a high-contrast interface for professional investors.</p>
+                </div>
+                <a href="#" class="details-btn">More Details ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2>Get In Touch</h2>
+            <p class="subtitle">Ready to start your next big project? Let’s talk.</p>
+            
+            <div class="contact-details">
+                <a href="mailto:ayiezasahar@gmail.com" class="info-link">
+                    <strong>Work Mail</strong> ayiezasahar@gmail.com
+                </a>
+                <a href="tel:+923259189065" class="info-link">
+                    <strong>Contact No</strong> +92 325 9189065
+                </a>
+                <div class="info-link">
+                    <strong>Location</strong> Pakistan / Remote
+                </div>
+                <div class="info-link">
+                    <strong>Availability</strong> Mon — Fri, 9am - 6pm
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ayieza Sahar. Designed for High-End Web Development.</p>
+    </footer>
+
+</body>
+</html>

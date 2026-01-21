@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONARCHY WEBSITE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<style>
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 60px;
+        background-color:#f5ecdb;
+
+    }
+    .logo{
+        color:#ff5533;
+        font-size: 18px;
+        font-weight: bold;
+        gap: 1px;
+        margin-left: 120px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif,serif;
+    }
+    .menu{
+        display: flex;
+      list-style: none;
+      gap: 20px;
+      padding-right: 150px;
+      color: #444;
+      font-family:sans-serif;
+      
+    }
+    .banner-section{
+        text-align: center;
+        padding: 100px;
+        background-color:#f5ecdb;
+        background-repeat: no-repeat;
+        background-size:cover;
+
+    }
+    .banner-h1{
+        font-size: 65px;
+        color:#ff5533;
+        font-weight: bold;
+        margin-bottom: 40px;
+        margin-top: 0px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .banner-p{
+        max-width: 600px;
+        margin: auto;
+        margin-bottom: 40px;
+        margin-top:15px ;
+        font-size: 20px;
+        gap: 8px;
+        height: 2px;
+        color:#212529;
+    }
+    .btn{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #ff5533;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-bottom: 95px;
+        margin-top: 75px;
+    }
+    .btn i{
+        color: #fff;
+        font-size: 12px;
+    }
+    .section-1{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 60px 20px;
+        margin: 40px;
+        margin-left: 90px;
+    }
+    .subsection-1, .subsection-2, .subsection-3{
+        width: 400px ;
+    }
+    .subsection-1 i, .subsection-2 i, .subsection-3 i {
+        font-size: 50px;
+        background-color:white;
+        color:#ff5533 ;
+        margin-bottom: 15px;
+    }
+    .subsection-1 h3, .subsection-2 h3, .subsection-3 h3{
+        color:#343a40;
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-family: sans-serif;
+    
+    }
+    .subsection-1 p, .subsection-2 p, .subsection-3 p{
+        font-size: 20px;
+        height: 2px;
+        color: #757575;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .portfolio-title{
+        color:#343a40;
+        font-family: sans-serif;
+        font-size: 30px;
+        margin-bottom: 60px;
+        margin-top: 110PX;
+        font-weight: 300px;
+        margin-left: 140px;
+    
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        row-gap: 15px;
+        column-gap: 15px;
+        padding-left: 135px;
+        padding-right: 50px;
+    }
+    .grid-item img{
+        width:100%;
+        height: 220px;
+        object-fit: cover;
+        vertical-align: 0px;
+        margin-left: 0px;
+    }
+    .testimonials{
+        text-align: center;
+        padding: 40px 20px;
+
+
+    }
+    .testimonials h2{
+        font-size: 28px;
+        margin-bottom: 60px;
+        color: rgb(24, 20, 20);
+        font-family: sans-serif;
+    }
+    .test-boxes{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+    }
+    .box{
+        background-color: #f5ecdb;
+        width: 230px;
+        height: 300px;
+        padding: 20px;
+        border-radius: 0px;
+    }
+    .box-img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-top: 5px;
+        margin-right: 5px;
+        float: right;
+    }
+    .box h3{
+        color: #ff5533;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        margin-top: 9px;
+        margin-left: 8px;
+        font-size: 18px;
+        float: left;
+    }
+    .role{
+        font-size: 13px;
+        color: #777;
+        margin-top: 0px;
+        margin-right: 100px;
+        
+    }
+    .box p{
+        font-size: 14px;
+        line-height: 1.4;
+        float: inline-end;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .blog-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        background-color: #f5ecdb;
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            max-width: 650px;
+        background-color: #f5ecdb;
+            margin-bottom: 40px;
+        }
+
+
+        .scroll-wrapper {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar-thumb {
+            background: rgb(65, 74, 65);
+            border-radius: 10px;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar-track {
+            background: rgb(101,127, 101);
+        }
+
+        .blog-card {
+            flex: 0 0 calc((100% - 60px)/3);
+        background-color: #f5ecdb;
+            border-radius: 0px;
+            scroll-snap-align: start;
+            width: 300px;
+
+        }
+
+
+        .blog-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .content {
+            padding: 20px;
+        }
+
+        .date {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 10px 0 20px;
+        }
+
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .name {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .role {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+        }
+    
+    .icon-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        font-size: 90px;
+        color: #5b5858;
+        margin-top: 90px;
+        margin-bottom: 90px;
+        margin-right: 80px;
+    
+    }
+    .icon-container{
+        font-size: 50px;
+        color:rgb(179, 179, 179);
+        gap: 210px;
+    }
+    .section-2{
+        background-color: #f5ecdb;
+        display: flex;
+        color: #777;
+        height: 400px;
+        justify-content: center;
+        padding-top: 130px;
+        padding-left: 200px;
+        padding-right: 250px;
+        gap: 80px;
+        font-family: sans-serif;
+    }
+
+    .subsection-1 p, .subsection-2 p, .subsection-3 p, .subsection-4 p{
+        color: #777;
+        font-size: 20px;
+
+    }
+    footer{
+        background-color: #f5ecdb;
+        margin-bottom: 40px;
+    }
+    .footer-icon{
+        color: #777;
+        font-size: 18px;
+        color: #ff5533;
+        margin-left: 700px;
+    }
+    .footer p{
+        color: #777;
+        font-size: 18px;
+        margin-left: 450px;
+        padding-top: 30px;
+        padding-bottom: 120px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="logo">MONARCHY</div>
+        <div class="menu-section">
+            <ul class="menu">
+                <li>Home</li>
+                <li>Portfolio</li>
+                <li> About</li>
+                <li>Services</li>
+                <li>Blog</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </header>
+    <section class="banner-section">
+        <h1 class="banner-h1"> Do What You Love</h1>
+        <p class="banner-p"> Passion fuels purpose, and purpose fuels happiness.When you love what you do,it doesn't feel like work at all.</p>
+<div class="btn">
+    <i class="fa fa-play"></i>
+
+</div>
+    </section>
+    <section class="section-1">
+        <div class="subsection-1">
+            <i class="fa fa-briefcase"></i>
+            <h3>Interface Design</h3>
+            <p>Clean,simple interfaces that make every action easy and intuitive. Designed to users smoothly through every part of your website. </p>
+        </div>
+        <div class="subsection-2">
+            <i class="fa fa-couch"></i>
+            <h3>Product Design</h3>
+            <p>Smartly crafted designs that turn ideas into visually strong digital products. Focused on style, function, and user-friendly structure.</p>
+        </div>
+        <div class="subsection-3">
+            <i class="fa fa-lightbulb"></i>
+            <h3>Quality Results</h3>
+            <p>Delivering polished,reliable results that make your website stand out. Every feture is refined for performance,clarity, and trust</p>
+        </div>
+    </section>
+    <section>
+        <h2 class="portfolio-title">Portfolio</h2>
+        <div class="grid-container">
+            <div class="grid-item"><img src="b4.jpeg"></div>
+           <div class="grid-item"><img src="p9.jpeg"></div>
+          <div class="grid-item"><img src="b7.jpeg"></div>
+          <div class="grid-item"><img src="p7.jpeg"></div>
+           <div class="grid-item"><img src="b10.jpeg"></div>
+          <div class="grid-item"><img src="b4.jpeg"></div>
+
+        </div>
+     </section>
+     <section class="testimonials">
+        <h2>Testimonials</h2>
+        <div class="test-boxes">
+            <div class="box">
+                <img src="a1.jpeg" class="box-img">
+                <h3>Chad Hawkins</h3>
+                <p class="role">Customer</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti odio impedit totam, ipsum sunt quam, perferendis placeat est, magnam rerum vero.</p>
+
+         </div>
+         <div class="box">
+            <img src="a3.jpeg" class="box-img">
+            <h3>Ayisha Atherton</h3>
+            <p class="role">Customer</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab veritatis ratione cumque maxime doloribus ipsa, officiis iste! Incidunt quas maxime.</p>
+        </div>
+        <div class="box">
+            <img src="a4.jpeg" class="box-img">
+            <h3>Riccardo Gilliam</h3>
+            <p class="role">Customer</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, ea tempore numquam ipsam amet beatae qui at consequatur optio, fugit iste corrup.</p>
+        </div>
+        <div class="box">
+            <img src="a2.jpeg" class="box-img">
+            <h3>Jasleen Dunkley</h3>
+            <p class="role"> Customer</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim tenetur fugit corrupti fugiat nobis perspiciatis libero, adipisci natus ab rerum?</p>
+         </div>
+        </div>
+     </section>
+    <section class="blog-section">
+     <div class="container">
+        <h2 class="section-title">Blog Updates</h2>
+      <p class="section-subtitle">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Deserunt ducimus
+     facere quam eos tempore beatae non eius, provident.
+     </p>
+     <div class="scroll-wrapper">
+
+        <div class="blog-card">
+            <img src="b4.jpeg">
+            <div class="content">
+                <p class="date">October 18, 2019</p>
+                <h3>Google saying pseudo telephone is more important</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">John Freeman</p>
+                       <p class="role">Thinker and Designer</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="p9.jpeg" >
+            <div class="content">
+                <p class="date">October 18, 2019</p>
+                <h3>Google saying pseudo-telephone is more important</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">john freeman</p>
+                        <p class="role">thinker and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="b7.jpeg">
+            <div class="content">
+                <p class="date"> October 18, 2019</p>
+                <h3>Google saying pseudo-telephone is more telephone</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">John Freeman</p>
+                        <p class="role">Thinker and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="p7.jpeg">
+            <div class="content">
+                <p class="date">October 18,2019</p>
+                <h3>Google saying pseudo-telephone is more important</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">John Freeman</p>
+                        <p class="role">Thinker and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="b10.jpeg">
+            <div class="content">
+                <p class="date">October 18,2019</p>
+                <h3>Google saying pseudo-telephone is more important</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">John Freeman</p>
+                        <p class="role">Thinker and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="b4.jpeg">
+            <div class="content">
+                <p class="date">October 18,2 019</p>
+                <h3>Google saying pseudo-telephone is more important</h3>
+                <div class="author">
+                    <img src="a2.jpeg">
+                    <div>
+                        <p class="name">John Freeman</p>
+                        <p class="role">Thinker and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+     </div>
+ </section>
+
+    
+    <div class="icon-container">
+        <i class="fa-brands fa-google">oogle</i>
+        <i class="fa-brands fa-invision">vision</i>
+        <i class="fa-solid fa-cloud"></i>
+        <i class="fa-brands fa-microsoft">Microsoft</i>
+
+    </div>
+
+    
+    <section class="section-2">
+        <div class=".subsection-1 p .subsection-2 p .subsection-3 p .subsection-4 p">
+                <h4 style="color: #ff5533; font-family: sans-serif;">MONARCHY</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laborum modi nihil amet omnis explicabo suscipit quidem tempore nesciunt. Perspiciatis cumque recusandae facilis dignissimos animi tenetur dolores quam mollitia amet!</p>
+              </div>
+        <div>
+                <h4 style="color: #777; font-family: sans-serif;">Contact Us</h4>
+                <ul>
+                    <li>hello@mydomain.com</li>
+                    <li>+1 829 2293 382</li>
+                    <li>Support</li>
+                </ul>
+              </div>
+        <div>
+                <h4 style="color: #777; font-family: sans-serif;">Home</h4>
+                <ul>
+                    <li>Blog</li>
+                    <li>Services</li>
+                    <li>About Us</li>
+                </ul>
+              </div>
+        <div>
+                <h4 style="color: #777; font-family: sans-serif;">Home</h4>
+                <ul>
+                    <li>Blog</li>
+                    <li>Services</li>
+                    <li>About Us</li>
+                </ul>
+              </div>
+              </section>
+              <footer>
+              <div class="footer-icon">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-snapchat"></i>
+        </div>
+        <div class="footer p">
+        <p class="copyright-text">Copyright 2025 All rights reserved | This template is made with <i class="fa fa-heart" style="color: red;"></i>by colorlib</p>
+    </div>
+</footer>
+</body>
+</html>

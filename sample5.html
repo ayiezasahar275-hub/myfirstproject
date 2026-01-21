@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocity Elite | Automotive Innovation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">VELOCITY</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#models">Models</a></li>
+            <li><a href="#performance">Performance</a></li>
+            <li><a href="#innovation">Innovation</a></li>
+        </ul>
+        <button class="video-btn" onclick="openModal()">
+            <i class="fas fa-play-circle"></i> WATCH SHOWREEL
+        </button>
+    </nav>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Defining the Future</h1>
+            <p>Experience the intersection of raw power and sophisticated design. We don't just build cars; we engineer masterpieces of motion.</p>
+            <button class="cta-primary" onclick="location.href='#models'">EXPLORE FLEET</button>
+        </div>
+    </section>
+
+    <section id="models">
+        <div class="section-title">
+            <p>Our Collection</p>
+            <h2>Aerodynamic Excellence</h2>
+        </div>
+        <div class="card-container">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=600&q=80" alt="Supercar">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Aero-X Carbon</h3>
+                        <p>Zero to sixty in 2.1 seconds. Full carbon fiber chassis and active aerodynamics.</p>
+                        <ul class="spec-list">
+                            <li><strong>Top Speed:</strong> 250mph</li>
+                            <li><strong>Weight:</strong> 1200kg</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=600&q=80" alt="Luxury Car">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Grand Sovereign</h3>
+                        <p>The pinnacle of luxury. Hand-stitched leather interiors and AI-driven suspension.</p>
+                        <ul class="spec-list">
+                            <li><strong>Engine:</strong> V12 Hybrid</li>
+                            <li><strong>Comfort:</strong> Level 5 Autonomous</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://images.unsplash.com/photo-1555353540-64580b51c258?auto=format&fit=crop&w=600&q=80" alt="EV Sport">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Volt GT</h3>
+                        <p>Sustainable power. Quad-motor electric setup with 1,200 horsepower.</p>
+                        <ul class="spec-list">
+                            <li><strong>Range:</strong> 500 Miles</li>
+                            <li><strong>Charging:</strong> 15min Ultra-fast</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performance">
+        <div class="perf-container">
+            <div class="perf-image">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80" alt="Performance Detail">
+            </div>
+            <div class="perf-text">
+                <h2>Unrivaled Engineering</h2>
+                <p>Our commitment to performance goes beyond speed. Every component is optimized for precision, ensuring the driver feels connected to the road with surgical accuracy. We utilize computational fluid dynamics to sculpt bodies that slice through the air.</p>
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <h3>1.2G</h3>
+                        <p>Lateral Acceleration</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>800Nm</h3>
+                        <p>Peak Torque</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>0.21</h3>
+                        <p>Drag Coefficient</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>2.5s</h3>
+                        <p>Launch Control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="innovation">
+        <div class="innovation-content">
+            <div class="section-title">
+                <p>Tomorrow's Tech</p>
+                <h2>A New Paradigm in Driving</h2>
+            </div>
+            <p class="long-para">We are redefining the relationship between human and machine. Our latest "Neural Drive" technology learns your driving style and optimizes power delivery in real-time, providing an experience that is both exhilarating and intuitive. By integrating aerospace-grade materials with next-generation AI, we ensure that every journey is not just travel, but an event.</p>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Neural Control</h3>
+                    <p>Deep learning algorithms that adjust damping and throttle response every 5 milliseconds for ultimate grip.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Titanium Safety</h3>
+                    <p>360-degree LIDAR scanning providing an invisible shield that predicts hazards before they occur.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Zero Emission</h3>
+                    <p>Pioneering solid-state battery technology for a cleaner, faster future without compromising on raw power.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="videoModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="video-container">
+            <iframe id="carVideo" src="" title="Car Video" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('carVideo');
+            video.src = "https://www.youtube.com/embed/PjG85_5Nfms?autoplay=1&mute=1";
+            modal.style.display = 'flex';
+        }
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('carVideo');
+            video.src = ""; // Stop video on close
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

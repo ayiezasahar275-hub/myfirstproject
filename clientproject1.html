@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | High-Performance Productivity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0b0f1a;
+            --surface: #111827;
+            --accent: #22d3ee;
+        }
+        body {
+            background-color: var(--bg-deep);
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.1);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center font-bold text-black italic">T</div>
+            <span class="text-xl font-extrabold tracking-tighter">TASK<span class="text-cyan-400">FLOW</span></span>
+        </div>
+        <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
+            <a href="#features" class="hover:text-cyan-400 transition">Product</a>
+            <a href="#workflow" class="hover:text-cyan-400 transition">Workflow</a>
+            <a href="#pricing" class="hover:text-cyan-400 transition">Pricing</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="hidden sm:block text-sm font-medium text-gray-400 hover:text-white transition">Login</button>
+            <button class="px-5 py-2 rounded-full bg-cyan-500 text-black text-sm font-bold hover:bg-cyan-400 transition transform hover:scale-105">Get Started</button>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen pt-48 pb-20 px-6 flex flex-col items-center overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-500/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-0 right-[-5%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px]"></div>
+
+        <h1 class="text-5xl md:text-8xl font-black text-center leading-[1.1] tracking-tight mb-8">
+            Manage tasks with <br><span class="gradient-text">military precision.</span>
+        </h1>
+        <p class="max-w-2xl text-center text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
+            The professional standard for high-output teams. Stop guessing, start executing with a workflow engine built for speed and clarity.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-5 z-10">
+            <button class="px-10 py-4 rounded-xl bg-white text-black font-bold text-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all">Claim your workspace</button>
+            <button class="px-10 py-4 rounded-xl glass font-bold text-lg hover:bg-white/5 transition-all">Book a demo</button>
+        </div>
+
+        <div class="relative mt-24 w-full max-w-6xl h-[300px] hidden md:block">
+            <div class="absolute top-0 left-1/4 glass p-6 rounded-2xl w-64 rotate-[-12deg] z-10 glow-cyan">
+                <div class="h-1.5 w-12 bg-cyan-400 rounded-full mb-4"></div>
+                <div class="space-y-3">
+                    <div class="h-3 w-full bg-white/10 rounded"></div>
+                    <div class="h-3 w-4/5 bg-white/10 rounded"></div>
+                </div>
+            </div>
+            <div class="absolute top-10 right-1/4 glass p-8 rounded-2xl w-80 rotate-[8deg] z-20 shadow-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xs font-bold text-cyan-400 tracking-widest uppercase">Upcoming Sprint</span>
+                    <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex gap-3"><div class="w-4 h-4 rounded border border-white/20"></div><div class="h-3 w-full bg-white/5 rounded"></div></div>
+                    <div class="flex gap-3"><div class="w-4 h-4 rounded border border-white/20"></div><div class="h-3 w-2/3 bg-white/5 rounded"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="py-12 border-y border-white/5 bg-[#0d121f] flex flex-wrap justify-around gap-8 text-center">
+        <div><p class="text-4xl font-black text-white">450k+</p><p class="text-xs text-gray-500 uppercase font-bold tracking-[0.2em] mt-2">Elite Users</p></div>
+        <div><p class="text-4xl font-black text-white">12M+</p><p class="text-xs text-gray-500 uppercase font-bold tracking-[0.2em] mt-2">Tasks Resolved</p></div>
+        <div><p class="text-4xl font-black text-white">99.99%</p><p class="text-xs text-gray-500 uppercase font-bold tracking-[0.2em] mt-2">System Uptime</p></div>
+    </div>
+
+    <section id="features" class="py-32 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold mb-16">Engineered for the <br><span class="text-cyan-400 italic">1% of power users.</span></h2>
+        <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-12 md:col-span-7 glass p-12 rounded-[2.5rem] hover:border-cyan-500/40 transition-all duration-500 group">
+                <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">⚡</div>
+                <h3 class="text-2xl font-bold mb-4">Hyper-speed Commands</h3>
+                <p class="text-gray-400 leading-relaxed">Navigate your entire workspace without ever touching your mouse. Global hotkeys and a powerful command bar (CMD+K) make you unstoppable.</p>
+            </div>
+            <div class="col-span-12 md:col-span-5 glass p-12 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/10 to-transparent">
+                <h3 class="text-2xl font-bold mb-4">Deep Analytics</h3>
+                <p class="text-gray-400">Visualize bottlenecks before they happen with velocity charts and team heatmaps.</p>
+            </div>
+            <div class="col-span-12 md:col-span-4 glass p-12 rounded-[2.5rem]">
+                <h3 class="text-2xl font-bold mb-4">Infinite Nesting</h3>
+                <p class="text-gray-400">Subtasks within subtasks. Organize complexity effortlessly.</p>
+            </div>
+            <div class="col-span-12 md:col-span-8 glass p-12 rounded-[2.5rem]">
+                <h3 class="text-2xl font-bold mb-4">API First Architecture</h3>
+                <p class="text-gray-400">Connect to GitHub, Slack, and Linear with native, two-way sync integrations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-[#090d16] px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-4xl font-bold mb-6">Total Control. <br>One Screen.</h2>
+                    <div class="space-y-4">
+                        <button onclick="switchTab('overview')" class="tab-btn w-full text-left p-4 rounded-xl glass border-l-4 border-l-cyan-500 bg-white/5">Overview</button>
+                        <button onclick="switchTab('taskbar')" class="tab-btn w-full text-left p-4 rounded-xl border-l-4 border-l-transparent hover:bg-white/5 transition">The Taskbar</button>
+                        <button onclick="switchTab('analytics')" class="tab-btn w-full text-left p-4 rounded-xl border-l-4 border-l-transparent hover:bg-white/5 transition">Advanced Analytics</button>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 glass h-[450px] rounded-3xl p-8 relative overflow-hidden">
+                    <div id="overview" class="tab-content active">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="h-32 bg-white/5 rounded-xl border border-white/10 p-4">
+                                <span class="text-xs text-gray-500 uppercase">Velocity</span>
+                                <div class="text-2xl font-bold text-cyan-400 mt-2">84%</div>
+                            </div>
+                            <div class="h-32 bg-white/5 rounded-xl border border-white/10 p-4">
+                                <span class="text-xs text-gray-500 uppercase">Active Sprints</span>
+                                <div class="text-2xl font-bold text-white mt-2">12</div>
+                            </div>
+                        </div>
+                        <div class="mt-8 space-y-4">
+                            <div class="h-4 w-full bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-cyan-500 w-3/4"></div></div>
+                            <div class="h-4 w-full bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-indigo-500 w-1/2"></div></div>
+                        </div>
+                    </div>
+                    <div id="taskbar" class="tab-content">
+                        <div class="space-y-4">
+                            <div class="p-4 glass rounded-lg flex justify-between"><span>Implement OAuth2.0</span><span class="text-cyan-400">High</span></div>
+                            <div class="p-4 glass rounded-lg flex justify-between"><span>Refactor State Management</span><span class="text-yellow-400">Medium</span></div>
+                            <div class="p-4 glass rounded-lg flex justify-between"><span>Dark Mode Polish</span><span class="text-gray-500">Low</span></div>
+                        </div>
+                    </div>
+                    <div id="analytics" class="tab-content flex items-end justify-around h-full pb-10">
+                        <div class="w-12 bg-cyan-500 rounded-t h-[60%]"></div>
+                        <div class="w-12 bg-cyan-500/50 rounded-t h-[40%]"></div>
+                        <div class="w-12 bg-cyan-400 rounded-t h-[85%]"></div>
+                        <div class="w-12 bg-indigo-500 rounded-t h-[55%]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="py-32 px-6">
+        <h2 class="text-4xl font-bold text-center mb-24">The Lifecycle of a <span class="gradient-text">Winning Move.</span></h2>
+        <div class="max-w-4xl mx-auto relative">
+            <div class="absolute left-1/2 top-0 bottom-0 w-[2px] timeline-line transform -translate-x-1/2"></div>
+            
+            <div class="relative mb-24 flex items-center justify-between">
+                <div class="w-5/12 text-right pr-12">
+                    <h4 class="text-2xl font-bold mb-2">Ideation</h4>
+                    <p class="text-gray-400">Capture thoughts instantly with global inboxing.</p>
+                </div>
+                <div class="w-4 h-4 rounded-full bg-cyan-400 z-10 shadow-[0_0_15px_rgba(34,211,238,1)]"></div>
+                <div class="w-5/12 pl-12"></div>
+            </div>
+
+            <div class="relative mb-24 flex items-center justify-between flex-row-reverse">
+                <div class="w-5/12 text-left pl-12">
+                    <h4 class="text-2xl font-bold mb-2">Prioritization</h4>
+                    <p class="text-gray-400">Auto-sort by RICE score and urgency.</p>
+                </div>
+                <div class="w-4 h-4 rounded-full bg-cyan-400 z-10"></div>
+                <div class="w-5/12 pr-12"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 bg-black/30">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Why leave your current tool?</h2>
+            <div class="glass rounded-[2rem] overflow-hidden">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="p-8 text-gray-500 uppercase text-xs tracking-widest">Feature</th>
+                            <th class="p-8 text-gray-400">Traditional Tools</th>
+                            <th class="p-8 text-cyan-400 bg-white/5">TaskFlow Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-300">
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-semibold">Interaction Latency</td>
+                            <td class="p-8">~250ms (Slow)</td>
+                            <td class="p-8 bg-white/5 font-bold">Sub-10ms (Instant)</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-semibold">Keyboard Control</td>
+                            <td class="p-8">Limited</td>
+                            <td class="p-8 bg-white/5 font-bold">100% Comprehensive</td>
+                        </tr>
+                        <tr>
+                            <td class="p-8 font-semibold">Offline Mode</td>
+                            <td class="p-8 text-red-400">Requires Sync</td>
+                            <td class="p-8 bg-white/5 font-bold text-green-400">Local-First Engine</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-8">Fair pricing for <span class="text-cyan-400">limitless teams.</span></h2>
+            
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <span class="text-sm text-gray-400">Monthly</span>
+                <div class="w-14 h-7 bg-white/10 rounded-full p-1 cursor-pointer" onclick="this.querySelector('div').classList.toggle('translate-x-7')">
+                    <div class="w-5 h-5 bg-cyan-500 rounded-full transition-all"></div>
+                </div>
+                <span class="text-sm text-gray-400">Yearly <span class="text-cyan-400 font-bold">(Save 20%)</span></span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="glass p-10 rounded-3xl border-white/5">
+                    <h4 class="text-xl font-bold mb-2">Individual</h4>
+                    <p class="text-gray-500 text-sm mb-6">For the solo craftsman.</p>
+                    <div class="text-4xl font-black mb-8">$0<span class="text-sm font-normal text-gray-500">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-gray-400 text-sm">
+                        <li>• Unlimited personal projects</li>
+                        <li>• Basic API access</li>
+                        <li>• Mobile app sync</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-white/20 font-bold hover:bg-white/5 transition">Get Started</button>
+                </div>
+                <div class="glass p-10 rounded-3xl border-cyan-500 bg-white/5 scale-105 relative glow-cyan">
+                    <div class="absolute top-0 right-0 bg-cyan-500 text-black px-4 py-1 text-[10px] font-black tracking-tighter rounded-bl-lg">MOST POPULAR</div>
+                    <h4 class="text-xl font-bold mb-2">Pro Team</h4>
+                    <p class="text-gray-400 text-sm mb-6">For high-growth startups.</p>
+                    <div class="text-4xl font-black mb-8">$19<span class="text-sm font-normal text-gray-400">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-gray-300 text-sm">
+                        <li>• Everything in Individual</li>
+                        <li>• Team Analytics & Heatmaps</li>
+                        <li>• Custom Workflow Engines</li>
+                        <li>• Priority Support</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-cyan-500 text-black font-extrabold hover:bg-cyan-400 transition">Go Pro</button>
+                </div>
+                <div class="glass p-10 rounded-3xl border-white/5">
+                    <h4 class="text-xl font-bold mb-2">Enterprise</h4>
+                    <p class="text-gray-500 text-sm mb-6">For global scale.</p>
+                    <div class="text-4xl font-black mb-8">Custom</div>
+                    <ul class="space-y-4 mb-10 text-gray-400 text-sm">
+                        <li>• Dedicated Account Manager</li>
+                        <li>• Custom Security & SSO</li>
+                        <li>• Unlimited History</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-white/20 font-bold hover:bg-white/5 transition">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-5xl mx-auto glass rounded-[3rem] p-16 text-center bg-gradient-to-tr from-cyan-900/20 to-indigo-900/20 border-white/10">
+            <h2 class="text-4xl md:text-6xl font-black mb-6">Ready to ship <span class="gradient-text">faster?</span></h2>
+            <p class="text-gray-400 text-xl mb-12">Join 10,000+ teams building the future today.</p>
+            <button class="px-12 py-5 bg-white text-black rounded-2xl font-black text-xl hover:scale-105 transition">Initialize Your Workspace</button>
+        </div>
+    </section>
+
+    <footer class="py-20 px-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div>
+                <div class="font-extrabold text-2xl mb-6">TASK<span class="text-cyan-400">FLOW</span></div>
+                <p class="text-gray-500 text-sm">The professional task management suite for modern teams.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-gray-300">Product</h5>
+                <ul class="text-gray-500 space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400">Changelog</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Integrations</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Desktop App</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-gray-300">Company</h5>
+                <ul class="text-gray-500 space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400">About Us</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-gray-300">Join the Newsletter</h5>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Email" class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm w-full outline-none focus:border-cyan-500">
+                    <button class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Tab Switching Logic
+        function switchTab(tabId) {
+            // Remove active classes
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-l-cyan-500', 'bg-white/5');
+                btn.classList.add('border-l-transparent');
+            });
+
+            // Set current active
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.remove('border-l-transparent');
+            activeBtn.classList.add('border-l-cyan-500', 'bg-white/5');
+        }
+
+        // Scroll Reveal Animation (Simpler Version)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

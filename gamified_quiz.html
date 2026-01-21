@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Quest | Space & Inventions Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables & Reset */
+        :root {
+            --bg-deep: #05071b;
+            --bg-panel: rgba(20, 24, 50, 0.85);
+            --primary: #00d2ff;
+            --secondary: #9d00ff;
+            --accent: #ff0055;
+            --success: #00ff9d;
+            --warning: #ffcc00;
+            --text: #ffffff;
+            --font-head: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Container */
+        .game-wrapper {
+            width: 95%;
+            max-width: 700px;
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.15);
+            position: relative;
+            overflow: visible;
+            transition: height 0.3s ease;
+        }
+
+        /* Screens */
+        .screen { display: none; flex-direction: column; align-items: center; width: 100%; animation: fadeIn 0.5s ease-out; }
+        .screen.active { display: flex; }
+
+        /* Typography */
+        h1, h2, h3 { font-family: var(--font-head); text-transform: uppercase; text-align: center; }
+        h1 { font-size: 2.5rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
+        p { font-size: 1.2rem; color: #b8b8d0; text-align: center; margin-bottom: 2rem; }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-family: var(--font-head);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.4);
+        }
+        .btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 0 30px rgba(0, 210, 255, 0.6); }
+        .btn:active { transform: scale(0.95); }
+
+        /* HUD */
+        .hud { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding: 0 10px; }
+        .hud-item { display: flex; flex-direction: column; align-items: center; }
+        .hud-label { font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; text-transform: uppercase; }
+        .hud-value { font-size: 1.5rem; font-weight: 700; font-family: var(--font-head); }
+
+        /* Progress & Timer */
+        .bars-container { width: 100%; margin-bottom: 2rem; }
+        .bar-wrap { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 8px; overflow: hidden; position: relative; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; box-shadow: 0 0 10px var(--primary); }
+        .timer-fill { height: 100%; background: var(--warning); width: 100%; transition: width 1s linear; }
+
+        /* Question Area */
+        .question-box { margin-bottom: 2rem; width: 100%; }
+        .question-text { font-size: 1.4rem; line-height: 1.4; margin-bottom: 1.5rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; }
+        .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-card:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); transform: translateX(5px); }
+        .option-card.selected { border-color: var(--warning); background: rgba(255, 204, 0, 0.1); }
+        .option-card.correct { background: rgba(0, 255, 157, 0.2); border-color: var(--success); color: var(--success); }
+        .option-card.wrong { background: rgba(255, 0, 85, 0.2); border-color: var(--accent); color: var(--accent); }
+
+        /* Level Badge */
+        .level-badge {
+            position: absolute; top: -15px; right: 20px;
+            background: var(--secondary); padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem; font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Result Screen */
+        .result-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 2rem; width: 100%; }
+        .stat-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: center; }
+        .final-score { font-size: 3rem; color: var(--primary); font-family: var(--font-head); }
+        .achievements { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .achievement-icon { font-size: 2rem; filter: drop-shadow(0 0 5px var(--warning)); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes popIn { 0% { transform: scale(0); } 80% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+        .shake { animation: shake 0.4s ease-in-out; }
+
+        /* Confetti Canvas */
+        #confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .game-wrapper { padding: 1.5rem; width: 100%; height: 100vh; border-radius: 0; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="game-wrapper" id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🪐</div>
+            <h1>Cosmic Quest</h1>
+            <p>Journey through space and time. Answer correctly to level up from Cadet to Galactic Master!</p>
+            <button class="btn" onclick="quizGame.init()">Launch Mission</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="level-badge" id="level-display">Level: Cadet</div>
+            
+            <div class="hud">
+                <div class="hud-item">
+                    <span class="hud-label">Score</span>
+                    <span class="hud-value" id="score-val">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Question</span>
+                    <span class="hud-value" id="question-count">1/15</span>
+                </div>
+            </div>
+
+            <div class="bars-container">
+                <div class="bar-wrap" title="Quiz Progress"><div class="progress-fill" id="progress-bar"></div></div>
+                <div class="bar-wrap" title="Time Remaining"><div class="timer-fill" id="timer-bar"></div></div>
+            </div>
+
+            <div class="question-box">
+                <h2 class="question-text" id="question-text">Loading...</h2>
+                <div class="options-grid" id="options-container">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen">
+            <h1>Mission Report</h1>
+            <div class="achievements" id="badges-container"></div>
+            
+            <div class="result-stats">
+                <div class="stat-box">
+                    <div class="hud-label">Final Score</div>
+                    <div class="final-score" id="final-score">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="hud-label">Correct</div>
+                    <div class="final-score" id="correct-count">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="hud-label">Wrong</div>
+                    <div class="final-score" id="wrong-count">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="hud-label">Accuracy</div>
+                    <div class="final-score" id="accuracy">0%</div>
+                </div>
+            </div>
+
+            <p id="result-msg">Good effort, Cadet!</p>
+            <button class="btn" onclick="quizGame.init()">Re-Deploy</button>
+        </div>
+    </div>
+
+    <script>
+        /* --- GAME DATA --- */
+        const questionsDB = [
+            { q: "Who is credited with inventing the first practical telescope?", options: ["Galileo Galilei", "Hans Lippershey", "Isaac Newton", "Nicolaus Copernicus"], a: 1 },
+            { q: "Which planet in our solar system is known as the 'Red Planet'?", options: ["Venus", "Jupiter", "Mars", "Saturn"], a: 2 },
+            { q: "Who was the first human to travel into space?", options: ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"], a: 2 },
+            { q: "Who invented the telephone?", options: ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"], a: 1 },
+            { q: "What is the largest planet in our solar system?", options: ["Earth", "Jupiter", "Uranus", "Neptune"], a: 1 },
+            { q: "Who discovered the law of gravity?", options: ["Albert Einstein", "Isaac Newton", "Charles Darwin", "Marie Curie"], a: 1 },
+            { q: "Which Apollo mission was the first to land humans on the Moon?", options: ["Apollo 8", "Apollo 11", "Apollo 13", "Apollo 17"], a: 1 },
+            { q: "Who is known as the 'Father of the Computer'?", options: ["Alan Turing", "Charles Babbage", "Steve Jobs", "Bill Gates"], a: 1 },
+            { q: "What is the name of the galaxy we live in?", options: ["Andromeda", "Whirlpool", "Milky Way", "Triangulum"], a: 2 },
+            { q: "Who invented the light bulb?", options: ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "James Watt"], a: 0 },
+            { q: "Which planet has the most extensive ring system?", options: ["Jupiter", "Saturn", "Uranus", "Neptune"], a: 1 },
+            { q: "Who invented the World Wide Web?", options: ["Steve Wozniak", "Tim Berners-Lee", "Mark Zuckerberg", "Vint Cerf"], a: 1 },
+            { q: "What is the closest star to Earth?", options: ["Proxima Centauri", "Sirius", "The Sun", "Betelgeuse"], a: 2 },
+            { q: "Who invented the airplane?", options: ["The Wright Brothers", "Leonardo da Vinci", "Amelia Earhart", "Charles Lindbergh"], a: 0 },
+            { q: "Who invented the steam engine?", options: ["James Watt", "Thomas Newcomen", "Robert Fulton", "George Stephenson"], a: 0 } // Simplified for quiz context
+        ];
+
+        /* --- GAME LOGIC --- */
+        const quizGame = {
+            state: {
+                score: 0,
+                correct: 0,
+                wrong: 0,
+                currIndex: 0,
+                timer: null,
+                timeLeft: 15, // seconds per question
+                isAnswering: false,
+                level: "Cadet"
+            },
+            els: {
+                screens: document.querySelectorAll('.screen'),
+                question: document.getElementById('question-text'),
+                options: document.getElementById('options-container'),
+                score: document.getElementById('score-val'),
+                qCount: document.getElementById('question-count'),
+                progress: document.getElementById('progress-bar'),
+                timerBar: document.getElementById('timer-bar'),
+                level: document.getElementById('level-display'),
+                finalScore: document.getElementById('final-score'),
+                accuracy: document.getElementById('accuracy'),
+                correctVal: document.getElementById('correct-count'),
+                wrongVal: document.getElementById('wrong-count'),
+                badges: document.getElementById('badges-container'),
+                msg: document.getElementById('result-msg'),
+                container: document.getElementById('game-container')
+            },
+
+            init() {
+                sfx.init();
+                this.state.score = 0;
+                this.state.correct = 0;
+                this.state.wrong = 0;
+                this.state.currIndex = 0;
+                this.state.level = "Cadet";
+                this.switchScreen('quiz-screen');
+                this.loadQuestion();
+            },
+
+            switchScreen(id) {
+                this.els.screens.forEach(s => s.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+            },
+
+            loadQuestion() {
+                this.state.isAnswering = true;
+                this.state.timeLeft = 15;
+                this.updateHUD();
+                
+                const q = questionsDB[this.state.currIndex];
+                this.els.question.textContent = q.q;
+                this.els.options.innerHTML = '';
+
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'option-card';
+                    btn.textContent = opt;
+                    btn.onclick = () => this.handleAnswer(idx, btn);
+                    this.els.options.appendChild(btn);
+                });
+
+                // Reset Timer Animation
+                this.els.timerBar.style.transition = 'none';
+                this.els.timerBar.style.width = '100%';
+                setTimeout(() => {
+                    this.els.timerBar.style.transition = 'width 15s linear';
+                    this.els.timerBar.style.width = '0%';
+                }, 50);
+
+                // Start Countdown
+                clearInterval(this.state.timer);
+                this.state.timer = setInterval(() => {
+                    this.state.timeLeft--;
+                    if (this.state.timeLeft <= 0) this.handleTimeOut();
+                }, 1000);
+            },
+
+            handleAnswer(idx, btn) {
+                if (!this.state.isAnswering) return;
+                this.state.isAnswering = false;
+                clearInterval(this.state.timer);
+
+                const correctIdx = questionsDB[this.state.currIndex].a;
+                const isCorrect = idx === correctIdx;
+
+                // Visual Feedback
+                if (isCorrect) {
+                    btn.classList.add('correct');
+                    sfx.play('correct');
+                    this.state.score += 100 + (this.state.timeLeft * 5); // Bonus for speed
+                    this.state.correct++;
+                    confetti.explode(btn.getBoundingClientRect().left + 100, btn.getBoundingClientRect().top);
+                } else {
+                    btn.classList.add('wrong');
+                    sfx.play('wrong');
+                    this.state.wrong++;
+                    this.els.options.children[correctIdx].classList.add('correct');
+                    this.els.container.classList.add('shake');
+                    setTimeout(() => this.els.container.classList.remove('shake'), 500);
+                }
+
+                this.checkLevel();
+                setTimeout(() => this.nextQuestion(), 1500);
+            },
+
+            handleTimeOut() {
+                this.state.isAnswering = false;
+                clearInterval(this.state.timer);
+                sfx.play('wrong');
+                const correctIdx = questionsDB[this.state.currIndex].a;
+                this.state.wrong++;
+                this.els.options.children[correctIdx].classList.add('correct');
+                this.els.container.classList.add('shake');
+                setTimeout(() => this.els.container.classList.remove('shake'), 500);
+                setTimeout(() => this.nextQuestion(), 1500);
+            },
+
+            nextQuestion() {
+                this.state.currIndex++;
+                if (this.state.currIndex < questionsDB.length) {
+                    this.loadQuestion();
+                } else {
+                    this.endGame();
+                }
+            },
+
+            updateHUD() {
+                this.els.score.textContent = this.state.score;
+                this.els.qCount.textContent = `${this.state.currIndex + 1}/${questionsDB.length}`;
+                this.els.progress.style.width = `${((this.state.currIndex) / questionsDB.length) * 100}%`;
+                this.els.level.textContent = `Rank: ${this.state.level}`;
+            },
+
+            checkLevel() {
+                const s = this.state.score;
+                let newLevel = this.state.level;
+                if (s >= 500) newLevel = "Explorer";
+                if (s >= 1200) newLevel = "Commander";
+                if (s >= 2000) newLevel = "Galactic Master";
+
+                if (newLevel !== this.state.level) {
+                    this.state.level = newLevel;
+                    sfx.play('level');
+                    this.els.level.style.animation = 'popIn 0.5s';
+                    setTimeout(() => this.els.level.style.animation = 'float 3s ease-in-out infinite', 500);
+                    confetti.explode(window.innerWidth / 2, window.innerHeight / 2, 100);
+                }
+            },
+
+            endGame() {
+                this.switchScreen('result-screen');
+                this.els.finalScore.textContent = this.state.score;
+                this.els.correctVal.textContent = this.state.correct;
+                this.els.wrongVal.textContent = this.state.wrong;
+                
+                // Calculate Accuracy
+                const percentage = Math.round((this.state.correct / questionsDB.length) * 100);
+                this.els.accuracy.textContent = `${percentage}%`;
+
+                // Badges
+                this.els.badges.innerHTML = '';
+                const badges = [];
+                if (this.state.score > 500) badges.push('🚀');
+                if (this.state.score > 1000) badges.push('⭐');
+                if (this.state.score > 1500) badges.push('👑');
+                if (this.state.score > 2000) badges.push('👽');
+                
+                badges.forEach(b => {
+                    const span = document.createElement('span');
+                    span.className = 'achievement-icon';
+                    span.textContent = b;
+                    this.els.badges.appendChild(span);
+                });
+
+                // Message
+                if (this.state.score > 2000) this.els.msg.textContent = "Unbelievable! You rule the galaxy!";
+                else if (this.state.score > 1000) this.els.msg.textContent = "Great work, Commander!";
+                else this.els.msg.textContent = "Back to the academy, Cadet.";
+            }
+        };
+
+        /* --- SOUND FX --- */
+        const sfx = {
+            ctx: null,
+            init() {
+                if (!this.ctx) {
+                    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+            },
+            play(type) {
+                if (!this.ctx) return;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                const now = this.ctx.currentTime;
+
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.linearRampToValueAtTime(100, now + 0.3);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                } else if (type === 'level') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.linearRampToValueAtTime(800, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.5);
+                    osc.start(now); osc.stop(now + 0.5);
+                }
+            }
+        };
+
+        /* --- CONFETTI SYSTEM --- */
+        const confetti = {
+            canvas: document.getElementById('confetti-canvas'),
+            ctx: document.getElementById('confetti-canvas').getContext('2d'),
+            particles: [],
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                this.loop();
+            },
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            },
+            explode(x, y, amount = 30) {
+                for (let i = 0; i < amount; i++) {
+                    this.particles.push({
+                        x: x, y: y,
+                        vx: (Math.random() - 0.5) * 10,
+                        vy: (Math.random() - 0.5) * 10 - 5,
+                        life: 100,
+                        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                        size: Math.random() * 5 + 2
+                    });
+                }
+            },
+            loop() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                for (let i = 0; i < this.particles.length; i++) {
+                    const p = this.particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.2; // gravity
+                    p.life--;
+                    p.size *= 0.96;
+                    
+                    this.ctx.fillStyle = p.color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+
+                    if (p.life <= 0) {
+                        this.particles.splice(i, 1);
+                        i--;
+                    }
+                }
+                requestAnimationFrame(() => this.loop());
+            }
+        };
+        confetti.init();
+
+    </script>
+</body>
+</html>

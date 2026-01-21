@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>responsive design</title>
+  <style>
+.main-section{
+  border: 2px solid;
+  display: flex;
+  justify-content: space space-around;
+  padding: 50px;
+}
+.box{
+  border: 2px solid red;
+}
+@media screen and ( max-width: 600px)
+{
+  .main-section{
+    flex-direction: column;
+  }
+}
+  </style>
+</head>
+<body>
+  <section class="main-section">
+    <div class="box">
+      <h1>left-section</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque velit est magnam consequatur, quidem sit culpa libero perferendis, magni sint nihil commodi explicabo dolor odio sed sequi! Neque, maxime ea.</p>
+   <button>read more</button>
+    </div>
+    <div class="box">
+      <h1>right-section</h1>
+      <button>click</button>
+      <ul>
+        <li>shop</li>
+        <li>click</li>
+        <li>search</li>
+        <li>contact</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
+    

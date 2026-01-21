@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgnitePerformance | Professional Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d63031; /* Energetic Red */
+            --secondary: #e17055; /* Warm Orange */
+            --accent: #f9ca24; /* Golden Yellow */
+            --dark: #1e272e; /* Slate Black */
+            --bg-light: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; line-height: 1.8; color: var(--dark); background: #fdfdfd; }
+
+        /* --- STICKY NAV BAR --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: var(--dark); position: fixed;
+            width: 100%; top: 0; z-index: 10000;
+        }
+        .logo { color: white; font-family: 'Montserrat'; font-size: 1.6rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #ccc; font-weight: 600; font-size: 0.8rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .yt-btn {
+            background: var(--primary); color: white; padding: 10px 20px; 
+            border-radius: 4px; text-decoration: none; font-weight: bold; transition: 0.3s;
+        }
+
+        /* --- SECTION 1: CRIMSON & GOLD HERO (NO BLUE) --- */
+        .hero {
+            height: 90vh; margin-top: 60px;
+            background: linear-gradient(rgba(30, 39, 46, 0.8), rgba(214, 48, 49, 0.4)), 
+                        url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; padding: 0 10%;
+        }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 20px; }
+        .hero p { max-width: 900px; font-size: 1.5rem; color: var(--accent); font-weight: 300; }
+
+        /* --- SECTION 2: EXPANDED IMAGE FLIP CARDS --- */
+        .services { padding: 100px 5%; background: #fff; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; font-family: 'Montserrat'; color: var(--dark); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .flip-card { height: 400px; perspective: 1000px; }
+        .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+        
+        .card-front, .card-back { 
+            position: absolute; width: 100%; height: 100%; 
+            backface-visibility: hidden; border-radius: 12px; overflow: hidden; 
+        }
+        .card-front img { width: 100%; height: 100%; object-fit: cover; }
+        .card-front .overlay-text { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7); color: var(--accent); padding: 15px; font-weight: 700; text-align: center; }
+        
+        .card-back { background: var(--dark); color: white; transform: rotateY(180deg); padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+        .card-back h3 { color: var(--accent); margin-bottom: 15px; font-family: 'Montserrat'; }
+
+        /* --- SECTION 3: DEEP PERFORMANCE (LONG) --- */
+        .performance { padding: 100px 8%; background: #111; color: white; display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
+        .perf-text { flex: 1; min-width: 350px; }
+        .perf-text h2 { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; font-family: 'Montserrat'; }
+        .perf-text p { font-size: 1.1rem; margin-bottom: 20px; color: #ddd; }
+        .perf-img { flex: 1; min-width: 350px; border: 10px solid var(--primary); border-radius: 20px; overflow: hidden; }
+        .perf-img img { width: 100%; display: block; }
+
+        /* --- SECTION 4: ENHANCED NUTRITION & INFO SLIDES --- */
+        .nutrition-mastery { padding: 100px 5%; background: #f4f4f4; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        
+        .info-slide { 
+            background: white; border-radius: 20px; overflow: hidden; display: flex; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); flex-wrap: wrap;
+        }
+        .info-slide:nth-child(even) { flex-direction: row-reverse; }
+        .slide-img { flex: 1; min-width: 300px; height: 400px; }
+        .slide-img img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-content { flex: 1; min-width: 300px; padding: 50px; }
+        .slide-content h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 20px; font-family: 'Montserrat'; }
+        .slide-content p { font-size: 1.1rem; color: #555; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .slide-img { height: 250px; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">IGNITE<span>PERFORMANCE</span></div>
+        <ul class="nav-links">
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#performance">METHODOLOGY</a></li>
+            <li><a href="#nutrition">NUTRITION</a></li>
+        </ul>
+        <a href="https://www.youtube.com/watch?v=ml6cT4AZdqI" target="_blank" class="yt-btn">LIVE WORKOUTS</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Evolve Your Standard</h1>
+        <p>A professional ecosystem where elite data meets relentless human ambition.</p>
+    </header>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Professional Verticals</h2>
+        </div>
+        <div class="grid">
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80" alt="Weights">
+                        <div class="overlay-text">STRENGTH & HYPERTROPHY</div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Power Development</h3>
+                        <p>We utilize progressive overload and neurological adaptation cycles to build dense muscle and explosive strength safely.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=600&q=80" alt="Cardio">
+                        <div class="overlay-text">AEROBIC CAPACITY</div>
+                    </div>
+                    <div class="card-back">
+                        <h3>VO2 Max Efficiency</h3>
+                        <p>Optimizing mitochondrial function through Zone 2 steady-state and lactate threshold intervals for peak endurance.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80" alt="Yoga">
+                        <div class="overlay-text">MOBILITY & RECOVERY</div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Structural Integrity</h3>
+                        <p>Corrective exercises designed to unlock joint restrictions and ensure long-term orthopedic health for high-performance athletes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance" id="performance">
+        <div class="perf-text">
+            <h2>The Kinetic Logic</h2>
+            <p>Our methodology is far removed from the "randomized" workouts found in standard commercial gyms. We treat performance as a logic puzzle. Every movement is chosen based on its ability to contribute to your specific goal, whether that is fat oxidation, contractile force, or metabolic flexibility.</p>
+            <p>We implement the "Total Human" concept. This means we monitor systemic inflammation, sleep quality, and stress levels alongside your physical training. By managing the CNS (Central Nervous System) load, we ensure you are never over-trained, only perfectly primed for growth.</p>
+            <p>Our facility provides the environment where high-achieving professionals find their physical equal. We combine clinical precision with an uncompromising culture of excellence.</p>
+        </div>
+        <div class="perf-img">
+            <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80" alt="Professional Trainer">
+        </div>
+    </section>
+
+    <section class="nutrition-mastery" id="nutrition">
+        <div class="section-header">
+            <h2 style="color: var(--primary);">Nutritional Engineering</h2>
+            <p style="max-width: 700px; margin: 0 auto; margin-top: 15px;">Elite performance starts at the cellular level. Our science-backed modules explain how we fuel the machine.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-slide">
+                <div class="slide-img">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80" alt="Clean Food">
+                </div>
+                <div class="slide-content">
+                    <h3>Metabolic Flexibility</h3>
+                    <p>Training your body to efficiently switch between burning carbohydrates for high-intensity work and stored body fat for steady-state activity.</p>
+                    <p>We provide detailed macronutrient breakdowns that align with your weekly training volume, ensuring you have the glycogen required for heavy lifting days without excess caloric storage.</p>
+                    <p><b>Focus:</b> Insulin Sensitivity & Nutrient Partitioning.</p>
+                </div>
+            </div>
+
+            <div class="info-slide">
+                <div class="slide-img">
+                    <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80" alt="Veggies">
+                </div>
+                <div class="slide-content">
+                    <h3>Micronutrient Density</h3>
+                    <p>True vitality is built on the foundation of micronutrients. We prioritize whole-food sources of vitamins and minerals that act as catalysts for energy production.</p>
+                    <p>Our protocols include "Anti-Inflammatory Loading," where we utilize specific foods to speed up tissue repair and reduce the soreness associated with heavy resistance training.</p>
+                    <p><b>Focus:</b> Cellular Repair & Enzymatic Function.</p>
+                </div>
+            </div>
+
+            <div class="info-slide">
+                <div class="slide-img">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Bowl">
+                </div>
+                <div class="slide-content">
+                    <h3>Hormonal Optimization</h3>
+                    <p>We understand the impact of cortisol and testosterone on your body composition. Our meal timing protocols are designed to keep stress hormones low and growth hormones high.</p>
+                    <p>By synchronizing your feeding windows with your circadian rhythm, we help you achieve deeper sleep and better cognitive focus throughout the work day.</p>
+                    <p><b>Focus:</b> Cortisol Control & Sleep Quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

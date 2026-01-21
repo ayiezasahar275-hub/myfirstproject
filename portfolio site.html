@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W E B F L O W | MyPortfolio</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* General Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #121212; color: white; line-height: 1.8; overflow-x: hidden; }
+        .container { width: 80%; margin: auto; }
+        
+        /* Color Theme - Updated to Red Wine */
+        :root { 
+            --red-wine: #5e0018; 
+            --dark-grey: #1e1e1e; 
+            --light-grey: #2d2d2d;
+        }
+
+        /* Header */
+        header { 
+            background: white; padding: 15px 0; 
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { color: black; font-weight: 800; font-size: 28px; margin-left: 5%; }
+        nav { margin-right: 5%; display: flex; align-items: center; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: black; margin: 0 15px; font-weight: 600; font-size: 15px; }
+        .btn-hire { 
+            background: var(--red-wine); color: white !important; 
+            padding: 8px 20px; border-radius: 30px; 
+        }
+
+        /* Section Small Headings (Standardized) */
+        .section-tag { 
+            color: var(--red-wine); 
+            font-size: 14px; 
+            font-weight: bold; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero { background: var(--dark-grey); padding: 80px 0; min-height: 80vh; display: flex; align-items: center; }
+        .hero-flex { display: flex; align-items: center; gap: 40px; width: 80%; margin: auto; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 65px; color: white; line-height: 1.1; margin-bottom: 20px; }
+        .hero-btn { 
+            display: inline-block; margin-top: 30px; padding: 15px 35px;
+            background: var(--red-wine); color: white; text-decoration: none; 
+            font-weight: bold; border-radius: 50px; transition: 0.3s;
+        }
+        .hero-img-container { flex: 1; text-align: center; }
+        .hero-img { 
+            width: 100%; max-width: 400px; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 50%; 
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* About Section */
+        .about { padding: 100px 0; display: flex; align-items: center; gap: 80px; }
+        .about-img-container { flex: 1; text-align: center; }
+        .about-img-container img { width: 100%; max-width: 350px; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 50%; }        
+        .about-info { flex: 1; }
+        .about-info h1 { font-size: 40px; color: white; margin-bottom: 20px; }
+        .personal-info { margin: 30px 0; font-size: 18px; }
+        .personal-info p { margin-bottom: 12px; }
+        .btn-cv { 
+            background: var(--red-wine); color: white; border: none; 
+            padding: 15px 30px; cursor: pointer; font-weight: bold; 
+            border-radius: 30px;
+        }
+
+        /* Stats Section */
+        .stats { display: flex; justify-content: space-around; text-align: center; padding: 80px 0; background: #0a0a0a; flex-wrap: wrap; gap: 20px; }
+        .stat-item { min-width: 200px; }
+        .stat-item h2 { font-size: 45px; color: var(--red-wine); margin-bottom: 10px; }
+        .stat-item p { font-size: 18px; color: #ccc; }
+
+        /* Services Section */
+        .services { padding: 100px 0; text-align: center; }
+        .services h1 { font-size: 36px; margin-bottom: 50px; }
+        .services-grid { display: flex; gap: 30px; }
+        .service-box { 
+            flex: 1; padding: 40px 20px; border: 2px solid var(--red-wine); 
+            border-radius: 25px; transition: 0.4s;
+        }
+        .service-box:hover { background: #1a0006; transform: translateY(-10px); }
+        .icon-circle { 
+            width: 70px; height: 70px; border: 2px solid var(--red-wine); 
+            border-radius: 50%; margin: 0 auto 25px; 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--red-wine);
+        }
+
+        /* Skills Section */
+        .skills { background: black; padding: 100px 0; text-align: center; }
+        .skills h1 { font-size: 36px; margin-bottom: 50px; }
+        .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto; }
+        .skill-item { 
+            background: #1a1a1a; padding: 20px; border-left: 6px solid var(--red-wine); 
+            border-radius: 8px; font-size: 18px;
+        }
+
+        /* Contact Section */
+        .contact { padding: 100px 0; text-align: center; }
+        .contact h1 { font-size: 36px; margin-bottom: 40px; }
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 20px; }
+        .contact-form input, .contact-form textarea { 
+            padding: 18px; background: #222; border: 1px solid #444; 
+            color: white; border-radius: 12px; font-size: 16px; width: 100%;
+        }
+        .btn-submit { 
+            background: var(--red-wine); color: white; padding: 18px; 
+            border: none; font-weight: bold; cursor: pointer; 
+            border-radius: 35px; font-size: 18px; transition: 0.3s;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-flex, .about, .services-grid {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+            .hero-text { order: 2; }
+            .hero-img-container { order: 1; }
+            .container { width: 90%; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            nav { justify-content: center; }
+            nav a { margin: 5px 10px; font-size: 14px; }
+            .hero-text h1 { font-size: 36px; }
+            .skills-list { grid-template-columns: 1fr; }
+            .stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">W E B F L O W</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Contact</a>
+            <a href="#" class="btn-hire">Hire Me</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-flex">
+            <div class="hero-text">
+                <span class="section-tag">Hello I'm</span>
+                <h1>Web Developer</h1>
+                <p>I love designing, coding, and bringing digital ideas to life.</p>
+                <a href="#" class="hero-btn">LET'S WORK</a>
+            </div>
+            <div class="hero-img-container">
+                <img src="download.jpeg" alt="Hero Image" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="about container">
+        <div class="about-img-container">
+            <img src="download.jpeg" alt="About Me">
+        </div>
+        <div class="about-info">
+            <span class="section-tag">About Me</span>
+            <h1>Web Developer</h1>
+            <p>I specialize in building robust web applications. My goal is to bridge the gap between complex backend logic and elegant frontend design.</p>
+            <div class="personal-info">
+                <p><strong>Name:</strong> Ayieza Sahar</p>
+                <p><strong>Email:</strong> ayiezasahar@gmail.com</p>
+                <p><strong>Phone:</strong> 92xxxxxxxxxx</p>
+            </div>
+            <button class="btn-cv">DOWNLOAD CV</button>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item"><h2>10</h2><p>Digital Products</p></div>
+        <div class="stat-item"><h2>60+</h2><p>Trusted Clients</p></div>
+        <div class="stat-item"><h2>200+</h2><p>Completed Projects</p></div>
+        <div class="stat-item"><h2>4+</h2><p>Experience</p></div>
+    </section>
+
+    <section class="services container">
+        <span class="section-tag">SERVICES</span>
+        <h1>What do I do for my clients</h1>
+        <div class="services-grid">
+            <div class="service-box">
+                <div class="icon-circle"><i class="fa-solid fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Clean, efficient, and scalable code for modern platforms.</p>
+            </div>
+            <div class="service-box">
+                <div class="icon-circle"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Creating visual journeys that users love and remember.</p>
+            </div>
+            <div class="service-box">
+                <div class="icon-circle"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h3>E-Commerce</h3>
+                <p>Turning your products into a seamless online shopping experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills">
+        <div class="container">
+            <span class="section-tag">SKILLS</span>
+            <h1>My Skills</h1>
+            <div class="skills-list">
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">React</div>
+                <div class="skill-item">PHP</div>
+                <div class="skill-item">MySQL</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact container">
+        <span class="section-tag">CONTACT</span>
+        <h1>Get In Touch</h1>
+        <form class="contact-form">
+            <input type="text" placeholder="Username">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Phone">
+            <textarea rows="6" placeholder="Message"></textarea>
+            <button class="btn-submit">SUBMIT</button>
+        </form>
+    </section>
+
+</body>
+</html>
